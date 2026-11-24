@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="360" viewBox="0 0 800 360">
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .txt { font-family: Inter, system-ui, -apple-system, sans-serif; }
+    .head, .card { animation: fadeUp 12s ease-out infinite; }
+    .c2 { animation-delay: .3s; }
+    .c3 { animation-delay: .6s; }
+    .hand { animation: spin 4s linear infinite; transform-origin: 68px 172px; }
+    .ring { animation: spin 5s linear infinite; transform-origin: 314px 172px; }
+    .orbit { animation: spin 4s linear infinite; transform-origin: 314px 172px; }
+    .time { animation: blink 2s steps(1) infinite; }
+    @keyframes fadeUp {
+      0%, 5% { opacity: 0; transform: translateY(9px); }
+      15%, 90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(0); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+  </style>
+  <rect width="800" height="360" rx="14" fill="#0d0d10"/>
+  <g class="head">
+    <text class="mono" x="40" y="46" fill="#dc2626" font-size="12" letter-spacing="3">RULES ENGINE</text>
+    <text class="txt" x="40" y="78" fill="#f7f7fb" font-size="23" font-weight="700">Automatic cleaning on your schedule.</text>
+  </g>
+
+  <g class="card">
+    <rect x="40" y="100" width="228" height="220" rx="12" fill="#171a21" stroke="#2b313e"/>
+    <circle cx="68" cy="172" r="26" fill="#dc2626" fill-opacity=".1" stroke="#dc2626" stroke-opacity=".5"/>
+    <path d="M68 153v5M68 186v5M49 172h5M82 172h5" stroke="#dc2626" stroke-width="1.6" stroke-linecap="round"/>
+    <g class="hand"><path d="M68 172v-14M68 172l10 8" stroke="#dc2626" stroke-width="2" stroke-linecap="round" fill="none"/></g>
+    <circle cx="68" cy="172" r="2.5" fill="#dc2626"/>
+    <text class="txt" x="108" y="160" fill="#f7f7fb" font-size="14" font-weight="650">On startup</text>
+    <text class="mono" x="108" y="178" fill="#a5a5b3" font-size="9">chrome://startup</text>
+    <text class="txt" x="60" y="228" fill="#a5a5b3" font-size="11.5">Runs once whenever</text>
+    <text class="txt" x="60" y="247" fill="#a5a5b3" font-size="11.5">the browser starts.</text>
+    <rect x="60" y="268" width="76" height="26" rx="13" fill="#dc2626" fill-opacity=".16"/>
+    <circle cx="74" cy="281" r="8" fill="#dc2626"/>
+    <text class="mono" x="90" y="285" fill="#ff7a85" font-size="8">ON</text>
+  </g>
+
+  <g class="card c2">
+    <rect x="286" y="100" width="228" height="220" rx="12" fill="#171a21" stroke="#2b313e"/>
+    <circle cx="314" cy="172" r="26" fill="none" stroke="#2b313e" stroke-width="2"/>
+    <g class="ring"><circle cx="314" cy="146" r="4" fill="#dc2626"/></g>
+    <g class="orbit"><path d="M314 156v-14" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/></g>
+    <circle cx="314" cy="172" r="3" fill="#dc2626"/>
+    <text class="txt" x="354" y="160" fill="#f7f7fb" font-size="14" font-weight="650">Every N hours</text>
+    <text class="mono" x="354" y="178" fill="#a5a5b3" font-size="9">1 – 720 hours</text>
+    <text class="txt" x="306" y="228" fill="#a5a5b3" font-size="11.5">Set an interval that</text>
+    <text class="txt" x="306" y="247" fill="#a5a5b3" font-size="11.5">runs in the background.</text>
+    <rect x="306" y="268" width="76" height="26" rx="13" fill="#dc2626" fill-opacity=".16"/>
+    <circle cx="320" cy="281" r="8" fill="#dc2626"/>
+    <text class="mono" x="336" y="285" fill="#ff7a85" font-size="8">ON</text>
+  </g>
+
+  <g class="card c3">
+    <rect x="532" y="100" width="228" height="220" rx="12" fill="#171a21" stroke="#2b313e"/>
+    <rect x="558" y="149" width="52" height="46" rx="6" fill="none" stroke="#dc2626" stroke-width="1.6"/>
+    <path d="M558 162h52M570 143v12M598 143v12" stroke="#dc2626" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M571 178h8M587 178h8" stroke="#dc2626" stroke-width="1.6"/>
+    <text class="txt" x="622" y="160" fill="#f7f7fb" font-size="14" font-weight="650">Daily at HH:MM</text>
+    <text class="mono time" x="622" y="179" fill="#dc2626" font-size="11">03:00</text>
+    <text class="txt" x="552" y="228" fill="#a5a5b3" font-size="11.5">A fixed time every day,</text>
+    <text class="txt" x="552" y="247" fill="#a5a5b3" font-size="11.5">in 24-hour format.</text>
+    <rect x="552" y="268" width="76" height="26" rx="13" fill="#dc2626" fill-opacity=".16"/>
+    <circle cx="566" cy="281" r="8" fill="#dc2626"/>
+    <text class="mono" x="582" y="285" fill="#ff7a85" font-size="8">ON</text>
+  </g>
+
+  <text class="mono" x="40" y="340" fill="#757f92" font-size="10">RULES ONLY TOUCH THEIR OWN DOMAINS · TOGGLE ON/OFF WITHOUT DELETING · LAST RUN IS RECORDED</text>
+</svg>
