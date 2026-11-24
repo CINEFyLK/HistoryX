@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "HistoryX — by CINEFyLK",
+  "short_name": "HistoryX",
+  "version": "3.1.0",
+  "description": "Clear history for individual sites, add sites from any page, schedule automatic cleanups, and manage large histories efficiently.",
+  "permissions": ["history", "storage", "activeTab", "tabs", "contextMenus", "alarms"],
+  "action": {
+    "default_title": "HistoryX — Manage history by domain",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "options_ui": {
+    "page": "src/options.html",
+    "open_in_tab": true
+  }
+}

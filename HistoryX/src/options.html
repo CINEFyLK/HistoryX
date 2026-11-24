@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HistoryX — Rules &amp; Settings</title>
+  <link rel="stylesheet" href="page.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6.7M20 4v7h-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <img src="../assets/icons/icon48.png" alt="">
+        <div>
+          <h1>HistoryX Rules</h1>
+          <span class="brand-sub">AUTOMATIC CLEANING · BY CINEFYLK</span>
+        </div>
+      </div>
+      <span id="versionLabel" class="version">v3.0</span>
+    </header>
+
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>Automatic cleaning rules</h2>
+          <p>Rules run in the background and only touch history for their domains.</p>
+        </div>
+        <button id="newRuleBtn" class="btn primary" type="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg> New rule</button>
+      </div>
+
+      <div id="ruleList" class="rule-list"></div>
+
+      <form id="ruleForm" class="rule-form" hidden novalidate>
+        <div class="form-head">
+          <h3 id="formTitle">New rule</h3>
+          <span class="tag">Step 1 of 1</span>
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label for="ruleName">Rule name</label>
+            <input id="ruleName" type="text" placeholder="Weekly distraction cleanup" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="ruleSchedule">When to run</label>
+            <select id="ruleSchedule">
+              <option value="startup">On browser startup</option>
+              <option value="interval">Every N hours</option>
+              <option value="daily">Daily at a set time</option>
+            </select>
+          </div>
+          <div id="intervalField" class="field" hidden>
+            <label for="ruleInterval">Every (hours)</label>
+            <input id="ruleInterval" type="number" min="1" max="720" value="6">
+          </div>
+          <div id="dailyField" class="field" hidden>
+            <label for="ruleHour">Time (24h)</label>
+            <div class="actions">
+              <input id="ruleHour" type="number" min="0" max="23" value="3" aria-label="Hour" style="width:80px">
+              <span class="time-sep">:</span>
+              <input id="ruleMinute" type="number" min="0" max="59" value="0" aria-label="Minute" style="width:80px">
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="ruleDomains">Domains (one per line, or paste URLs)</label>
+          <textarea id="ruleDomains" placeholder="youtube.com&#10;www.reddit.com&#10;https://news.ycombinator.com"></textarea>
+          <p class="hint">Subdomains are included automatically. Invalid entries are skipped.</p>
+        </div>
+
+        <p id="ruleError" class="form-error" role="alert" hidden></p>
+
+        <div class="actions form-actions">
+          <label class="toggle">
+            <input id="ruleEnabled" type="checkbox" checked>
+            <span class="toggle-track"></span> Enabled
+          </label>
+          <span class="spacer"></span>
+          <button id="saveRuleBtn" class="btn primary" type="submit">Save rule</button>
+          <button id="cancelRuleBtn" class="btn" type="button">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>History cache &amp; large profiles</h2>
+          <p>History is read in small time windows and stored locally so the popup stays fast.</p>
+        </div>
+        <button id="fullResyncBtn" class="btn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg> Full resync</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-label">CACHED URLS</span><span id="cacheItems" class="stat-value">—</span></div>
+        <div class="stat"><span class="stat-label">LAST SYNC</span><span id="cacheSynced" class="stat-value">—</span></div>
+        <div class="stat"><span class="stat-label">FULL SCAN</span><span id="cacheFull" class="stat-value">—</span></div>
+      </div>
+      <div class="field cache-field">
+        <label for="cacheAgeSelect">Refresh cached data after</label>
+        <select id="cacheAgeSelect">
+          <option value="900000">15 minutes</option>
+          <option value="1800000">30 minutes</option>
+          <option value="7200000">2 hours</option>
+          <option value="21600000">6 hours</option>
+        </select>
+      </div>
+      <p id="cacheStatus" class="hint"></p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>Appearance &amp; context menu</h2>
+          <p>Right-click any page or link for "Add this site" and "Clear this site's history".</p>
+        </div>
+        <div class="actions">
+          <button class="btn small" type="button" data-theme="dark"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> Dark</button>
+          <button class="btn small" type="button" data-theme="light"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg> Light</button>
+        </div>
+      </div>
+      <p class="note">Automatic rules delete every visit for matching URLs. Chrome's API cannot delete only recent visits of a URL, so rules do not support a "last 7 days" filter.</p>
+    </section>
+
+    <p class="footer">HISTORYX · BY CINEFYLK · 100% LOCAL</p>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HistoryX — Clear site history</title>
+  <link rel="stylesheet" href="page.css">
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6.7"/><path d="M20 4v7h-7"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+  </svg>
+
+  <div class="wrap narrow">
+    <header class="topbar">
+      <div class="brand">
+        <img src="../assets/icons/icon48.png" alt="">
+        <div>
+          <h1>Clear site history</h1>
+          <span class="brand-sub">HISTORYX · BY CINEFYLK</span>
+        </div>
+      </div>
+      <span id="versionLabel" class="version">v3.0</span>
+    </header>
+
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <div class="site-line"><span id="siteName" class="site-name">Loading…</span><span class="tag">Domain</span></div>
+          <p id="siteSummary" class="site-summary">Reading your history cache.</p>
+        </div>
+        <button id="selectAllBtn" class="btn small" type="button" disabled>Select all</button>
+      </div>
+
+      <div class="confirm-toolbar">
+        <div class="search-field">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="urlFilter" type="search" placeholder="Filter URLs…" aria-label="Filter URLs" autocomplete="off" disabled>
+        </div>
+        <button id="refreshBtn" class="btn small" type="button" title="Rescan history for this domain">
+          <svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg> Refresh
+        </button>
+      </div>
+
+      <div id="urlList" class="url-list"></div>
+
+      <div class="field checkbox-field">
+        <label class="toggle">
+          <input id="addToList" type="checkbox">
+          <span class="toggle-track"></span> Also add this domain to my HistoryX list
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="clearBtn" class="btn danger" type="button" disabled>
+          <svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg> Clear selected history
+        </button>
+        <button id="cancelBtn" class="btn" type="button">Cancel</button>
+      </div>
+      <div id="result" class="result-banner" hidden></div>
+      <p class="note">This removes the selected URLs from Chrome history. Cookies, cache and site data are not touched. You can undo from the extension popup right after cleaning.</p>
+    </section>
+  </div>
+
+  <script type="module" src="confirm.js"></script>
+</body>
+</html>
